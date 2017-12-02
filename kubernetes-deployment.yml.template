@@ -1,0 +1,44 @@
+#
+# Copyright (c) 2017 Oracle and/or its affiliates. All rights reserved.
+#
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rest-simpleapp
+  labels:
+    run: rest-simpleapp
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: rest-simpleapp
+    spec:
+      containers:
+      - image: wcr.io/$WERCKER_APPLICATION_OWNER_NAME/$WERCKER_APPLICATION_NAME:$WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
+        imagePullPolicy: Always
+        name: rest-simpleapp
+        ports:
+        - containerPort: 3000
+          protocol: TCP
+      imagePullSecrets:
+      - name: wrelease
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-simpleapp-svc
+spec:
+  selector:
+    run: rest-simpleapp
+  ports:
+    - port: 8088
+      targetPort: 3000
+  type: ClusterIP
