@@ -9,7 +9,7 @@ var bodyParser = require('body-parser') // npm install body-parser
 
 var app = express();
 
-app.set('port', process.env.PORT || 3500);
+app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json()); // for parsing application/json
 
 
