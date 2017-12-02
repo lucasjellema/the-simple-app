@@ -8,27 +8,25 @@ var express = require('express')
 var bodyParser = require('body-parser') // npm install body-parser
 
 var app = express();
-var server = http.createServer(app);
 
-var PORT = process.env.PORT || 3000;
-
-
-server.listen(PORT, function () {
-    console.log('Server running, Express is listening... at ' + PORT + " for Orders Data API");
-});
-
+app.set('port', process.env.PORT || 3500);
 app.use(bodyParser.json()); // for parsing application/json
 
 
+
+
+
+
+
+http.createServer(app).listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
+});
 
 app.post('/simple-app', function (req, res) {
     console.log("Received Post request - will handle it now ");
     handlePost(req, res);
 });
 
-http.createServer(app).listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + app.get('port'));
-});
 
 app.get('/about', function (req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
