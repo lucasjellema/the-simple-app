@@ -29,7 +29,7 @@ app.get('/stuff', function (req, res) {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     // from https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON
     var stuff = {
-        "squadName": "Super hero squad",
+        "squadName": "Raymond Job en Frank",
         "homeTown": "Metro City",
         "formed": 2016,
         "secretBase": "Super tower",
