@@ -19,7 +19,7 @@ app.post('/simple-app', function (req, res) {
 
 app.get('/about', function (req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write("About Simple App REST API V3.2:");
+    res.write("About Simple App REST API V3.3:");
     res.write("/simple-app - POST  ");
     res.write("incoming headers" + JSON.stringify(req.headers));
     res.end();
