@@ -15,6 +15,7 @@ push-to-releases:
         tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         cmd: node /pipeline/source/app.js
 
+# for now we will delete and recreate the namespace, however, at some point that may be a little much for just a redeployment of the Pod! 
 deploy-to-oke:
   box:
         id: alpine
